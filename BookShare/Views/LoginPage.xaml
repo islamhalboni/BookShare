@@ -1,0 +1,70 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:BookShare.ViewModels" 
+             x:DataType="viewmodels:LoginViewModel"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="BookShare.Views.LoginPage"  
+             Visual="Material" >
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout>
+                <StackLayout>
+                    <StackLayout Padding="50" Orientation="Horizontal">
+                        <Image Source="Logo" VerticalOptions="Center" HorizontalOptions="Center"
+                               HeightRequest="150" WidthRequest="300" Margin="0,50,0,0" />
+                    </StackLayout>
+                    <StackLayout
+                        Orientation="Vertical" HorizontalOptions="Center">
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="30">
+
+                        <Frame BorderColor="Black" CornerRadius="10" Padding="0" WidthRequest="150" BackgroundColor="Transparent">
+                            <Entry Text="{Binding Email}" Placeholder="Email" Keyboard="Email" BackgroundColor="White"/>
+                        </Frame>
+                        <Label Text="{Binding EmailText}" TextColor="Red"/>
+                        <Frame BorderColor="Black" CornerRadius="10" Padding="0" WidthRequest="150" Margin="0,15,0,0" BackgroundColor="Transparent">
+                            <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True" BackgroundColor="White"/>
+                        </Frame>
+                        <Label Text="{Binding PasswordText}" TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Start" Margin="40,-30,0,10">
+                        <Label Text="Forgot your password?" TextColor="#F4717F">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                    <Button Margin="20"
+                            WidthRequest="207"
+                            HeightRequest="46"
+                            Text="Sign in"
+                            TextColor="#FFFFFF"
+                            BackgroundColor="#F4717F"
+                            CornerRadius="10" 
+                            Command="{Binding SubmitCommand}"
+                            FontSize="16"
+                            HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Dont have an account ?" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Sign Up" TextColor="#F4717F">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SignUpPageCommand}" />
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BookShare.ViewModels"
+             x:Class="BookShare.Views.ContactPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ContactViewModel />
+    </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <StackLayout >
+            <Label FontSize="20" Margin="0,0,80,0" TextColor="Black" FontAttributes="Bold"  HorizontalOptions="Center" 
+                   VerticalOptions="CenterAndExpand" >BookShare
+            </Label>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="50,10,40,50">
+            <Image Source="logo" 
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Margin="0,0,0,40"
+                   Aspect="AspectFit"
+                   
+                />
+            <Label Text="📞 Contact Me"
+                   TextColor="Black"
+                   FontSize="30"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,40"
+                   />
+
+            <Frame BorderColor="Black" CornerRadius="10" Padding="5" >
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding SelectedBook.PublisherGender}" IsVisible="False"/>
+                    <Image Source="{Binding SelectedBook.ProfileIcon}"/>
+                    <Label Text="{Binding SelectedBook.Username}" FontSize="Small"   TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame BorderColor="Black" CornerRadius="10" Padding="5" Margin="0,40">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="{Binding SelectedBook.ContactIcon}" HeightRequest="55" Aspect="AspectFit"/>
+                    <Label x:Name="ContactMethodLabel" Text="{Binding SelectedBook.ContactMethod}" FontSize="Small" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    <ImageButton Source="copy.jpg" Command="{Binding CopyCommand}" CommandParameter="{x:Reference ContactMethodLabel}" HeightRequest="25" WidthRequest="25" Margin="10"/>
+                </StackLayout>
+            </Frame>
+
+
+
+            <Frame BorderColor="Black" CornerRadius="10" Padding="5">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="icon_feed" HeightRequest="55"  Aspect="AspectFit"/>
+                    <Label Text="{Binding SelectedBook.Status}" FontSize="Small"   TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

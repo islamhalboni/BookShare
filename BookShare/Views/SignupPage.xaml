@@ -1,0 +1,185 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:BookShare.ViewModels"
+             x:Class="BookShare.Views.SignupPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             x:DataType="viewmodels:SignupViewModel"
+             Visual="Material"
+             >
+    <ContentPage.BindingContext>
+        <viewmodels:SignupViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+    <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="Red" />
+    </Style>
+</ContentPage.Resources>
+
+    
+    <ScrollView>
+
+        <StackLayout BackgroundColor="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Source="logo.png" 
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       Aspect="AspectFit" 
+                       />
+
+                <StackLayout Grid.Row="1" Padding="20" Margin="10">
+
+                <Frame BackgroundColor="White" BorderColor="Black" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="id.png" WidthRequest="24" HeightRequest="24" Margin="10,0,0,0"/>
+                        <Entry Grid.Column="1" Placeholder="Email@stu.najah.edu" Keyboard="Email" BackgroundColor="Transparent" WidthRequest="300" TextColor="Black" Text="{Binding BindingUser.Email}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" x:Name="email_entry">
+                            <Entry.Behaviors>
+                                <xct:EmailValidationBehavior RegexPattern="^.*@([a-z]+.)?stu.najah.edu$" IsValid="{Binding IsValidInput}" InvalidStyle="{StaticResource InvalidEntryStyle}" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+                </Frame>
+
+                    <Label TextColor="red" Text="{Binding EmailText}"></Label>
+
+                <Frame BackgroundColor="White" BorderColor="Black" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="profile.png" WidthRequest="24" HeightRequest="24" Margin="10,0,0,0"/>
+                        <Entry Grid.Column="1" Placeholder="Username" BackgroundColor="Transparent" WidthRequest="300" TextColor="Black" Text="{Binding BindingUser.Name}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" x:Name="username_entry">
+                        </Entry>
+                    </Grid>
+                </Frame>
+                <Label TextColor="Red" Text="{Binding UsernameText}" />
+
+
+            <Frame BackgroundColor="White" BorderColor="Black" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="padlock.png" WidthRequest="24" HeightRequest="24" Margin="10,0,0,0"/>
+                    <Entry Grid.Column="1" Placeholder="Password" IsPassword="{Binding IsPasswordVisible}" PlaceholderColor="Gray" BackgroundColor="Transparent" Text="{Binding BindingUser.Password}" WidthRequest="300" TextColor="Black" FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior MinimumLength="5" InvalidStyle="{StaticResource InvalidEntryStyle}" IsValid="{Binding IsValidInput}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Image Grid.Column="2" Source="{Binding PasswordIcon}" WidthRequest="24" HeightRequest="24" Margin="0,0,10,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TogglePasswordCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+
+    <Label TextColor="red" Text="{Binding PasswordText}"></Label>
+
+                    <Frame BackgroundColor="White" BorderColor="Black" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="0">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="online.png" WidthRequest="24" HeightRequest="24" Margin="10,0,0,0"/>
+        <Picker Grid.Column="1" Title="Faculty" TitleColor="Gray" SelectedItem="{Binding BindingUser.Faculty}" BackgroundColor="Transparent" WidthRequest="300" VerticalOptions="CenterAndExpand">
+                            <Picker.ItemsSource>
+
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Engineering and Information Technology</x:String>
+                                    <x:String>College of Law</x:String>
+                                    <x:String>Faculty of Fine Arts</x:String>
+                                    <x:String>Faculty of Science</x:String>
+                                    <x:String>Faculty of Humanities</x:String>
+                                    <x:String>Faculty of Educational Sciences and Teacher Preparation</x:String>
+                                    <x:String>Faculty of Sharia</x:String>
+                                    <x:String>Faculty of Medicine and Health Sciences</x:String>
+                                    <x:String>Faculty of Agriculture and Veterinary Medicine</x:String>
+                                    <x:String>Faculty of Economics and Social Sciences</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+        </Picker>
+    </Grid>
+</Frame>
+<Label TextColor="red" Text="{Binding SelectedFaculty}"></Label>
+
+
+
+
+<Frame BackgroundColor="White"  BorderColor="Black" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="0" Margin="0" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="desc.png" WidthRequest="24" HeightRequest="24" Margin="10,0,0,0" />
+        <Picker Grid.Column="1"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="300"
+                Title="Gender"
+                TitleColor="Gray"
+                SelectedItem="{Binding BindingUser.Gender}"
+                BackgroundColor="White">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Male</x:String>
+                    <x:String>Female</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    </Grid>
+</Frame>
+<Label TextColor="Red" Text="{Binding SelectedGender}" />
+
+
+
+                    <Button 
+                        WidthRequest="207"
+                        HeightRequest="46"
+                        Text="Sign up"
+                        BackgroundColor="#F4717F"
+                        TextColor="#FFFFFF"
+                        FontSize="20"
+                        Margin="20"
+                        CornerRadius="10"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"
+                        Command="{Binding CreateAcount}"/>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Padding="0,0,0,30">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Already have an account ?" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Sign In" TextColor="#F4717F">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LogInPageCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage> 
